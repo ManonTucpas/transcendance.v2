@@ -13,7 +13,7 @@ services:
     # Reflect File changes from host to container
     volumes:
       - ./nest:/src/app
-      - ./src/app/node_modules
+      - /mnt/nfs/homes/mlecuyer/Documents/transcendance.v2.1/apps/nest/node_modules/
     
     # RUN in debug mode: npm start:debug --> Also start your vscode debugger
     # RUN in dev mode: npm run start:dev
@@ -28,15 +28,15 @@ services:
       - 3000:3000
       - 9229:9229 # for debug
 
-  vue:
+  react:
     build: 
       dockerfile: Dockerfile
-      context: ./vue
+      context: ./react
       target: development
-    command: npm run serve
+    command: npm start
     volumes:
-     - ./vue:/vue/src/app
-    #  - ./vue/src/app/node_modules
+     - ./react:/react/src/app
+     - /mnt/nfs/homes/mlecuyer/Documents/transcendance.v2.1/apps/react/node_modules
     ports:
       - 4200:4200
     links: 
